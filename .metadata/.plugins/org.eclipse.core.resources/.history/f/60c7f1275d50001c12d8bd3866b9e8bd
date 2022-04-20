@@ -1,0 +1,44 @@
+	package Proyecto;
+
+
+import java.util.ArrayList;
+import filtros.Filtro;
+
+public abstract class ElementoParticipanteAbs{
+	
+	private String nombre;
+	private int edad;
+	
+	public ElementoParticipanteAbs(String nombre, int edad) {
+		this.nombre = nombre;
+		this.edad = edad;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public int getEdad() {
+		return edad;
+	}
+	
+	public abstract ArrayList<String> getListaDeGeneros();
+	
+	public abstract ArrayList<String> getListaDeIdiomas();
+	
+	public abstract ArrayList<String> getListaDeInstrumentos();
+	
+	public abstract ArrayList<ElementoParticipanteAbs> getListaDeParticipantesConFiltro(Filtro f);
+	
+	public boolean puedeInterpretarCancion(Cancion cancion) {
+		if(cancion.puedeInterpretarse(this.getListaDeGeneros(),this.getListaDeIdiomas()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public abstract boolean puedeInterpretarTemaFinal(CancionFinal tema);
+	
+	
+	
+
+}

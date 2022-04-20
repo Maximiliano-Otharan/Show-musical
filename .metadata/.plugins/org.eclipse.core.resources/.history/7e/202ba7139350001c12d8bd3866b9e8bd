@@ -1,0 +1,188 @@
+package Proyecto;
+
+
+import filtros.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Coach FreddieMercury = new Coach("Freddie","Mercury");
+		Coach DavidBowie = new Coach("David","Bowie");
+		
+		Filtro f1 = new FiltroGenero("Pop"); 
+		
+		CoachExigente IndioSolari = new CoachExigente("Indio", "Solari", f1);
+		
+		Participante GuidoSuller = new Participante ("Guido", "Suller", 50);
+		Participante SoledadSilveyra = new Participante ("Soledad", "Silveyra", 55);
+		Participante DalmaMaradona = new Participante ("Dalma", "Maradona", 38);
+		Participante AlejandroLerner = new Participante ("Alejandro", "Lerner", 55);
+		Participante LGante = new Participante ("L-", "Gante", 20);
+		Participante PeterCapusotto = new Participante ("Peter", "Capusotto", 50);
+		Participante AlexGaniggia = new Participante ("Alex", "Caniggia", 30);
+		Participante SandraMihanovich = new Participante ("Sandra", "Mihanovich", 50);
+		Participante Londra = new Participante ("Paulo", "Londra", 20);
+		Participante Trapero = new Participante ("El", "Trapero", 20);
+		
+		/*GUIDO SULLER*/
+		GuidoSuller.addGenero("Pop");
+		GuidoSuller.addIdioma("Ingles");
+		GuidoSuller.addIdioma("Español");
+		GuidoSuller.addInstrumento("Guitarra");
+		GuidoSuller.addInstrumento("Piano");
+		/*SOLEDAD SILVEYRA*/
+		SoledadSilveyra.addGenero("Romantico");
+		SoledadSilveyra.addIdioma("Español");
+		SoledadSilveyra.addInstrumento("Guitarra");
+		/*DALMA MARADONA*/
+		DalmaMaradona.addGenero("Cumbia");
+		DalmaMaradona.addIdioma("Español");
+		DalmaMaradona.addInstrumento("Pandereta");
+		/*ALEJANDRO LERNER*/
+		AlejandroLerner.addGenero("Rock");
+		AlejandroLerner.addGenero("Pop");
+		AlejandroLerner.addIdioma("Ingles");
+		AlejandroLerner.addIdioma("Español");
+		AlejandroLerner.addInstrumento("Guitarra");
+		AlejandroLerner.addInstrumento("Piano");
+		AlejandroLerner.addInstrumento("Bajo");
+		/*L GANTE*/
+		LGante.addGenero("Cumbia");
+		LGante.addGenero("Trap");
+		LGante.addIdioma("Español");
+		LGante.addInstrumento("BeatBox");
+		/*PETER CAPUSOTTO*/
+		PeterCapusotto.addGenero("Rock");
+		PeterCapusotto.addIdioma("Ingles");
+		PeterCapusotto.addIdioma("Español");
+		PeterCapusotto.addInstrumento("Guitarra");
+		PeterCapusotto.addInstrumento("Piano");
+		/*ALEX CANIGGIA*/
+		AlexGaniggia.addGenero("Trap");
+		AlexGaniggia.addIdioma("Español");
+		AlexGaniggia.addIdioma("Ingles");
+		AlexGaniggia.addIdioma("Italiano");
+		AlexGaniggia.addInstrumento("BeatBox");
+		/*SANDRA MIHANOVICH*/
+		SandraMihanovich.addGenero("Tango");
+		SandraMihanovich.addGenero("Milonga");
+		SandraMihanovich.addIdioma("Español");
+		SandraMihanovich.addInstrumento("Guitarra");
+		SandraMihanovich.addInstrumento("Piano");
+		SandraMihanovich.addInstrumento("Acordeon");
+		
+		/*PAULO LONDRA*/
+		Londra.addGenero("Cumbia");
+		Londra.addGenero("Trap");
+		Londra.addGenero("Milonga");
+		Londra.addIdioma("Español");
+		Londra.addInstrumento("BeatBox");
+		
+		/*EL TRAPERO*/
+		Trapero.addGenero("Cumbia");
+		Trapero.addGenero("Trap");
+		Trapero.addIdioma("Español");
+		Trapero.addInstrumento("BeatBox");
+		
+		/*COACHES*/
+		/*FREDDIE MERCURY*/
+		FreddieMercury.addParticipante(GuidoSuller);
+		FreddieMercury.addParticipante(SoledadSilveyra);
+		FreddieMercury.addParticipante(AlejandroLerner);
+		FreddieMercury.addParticipante(DalmaMaradona);
+		/*DAVID BOWIE*/
+		DavidBowie.addParticipante(LGante);
+		DavidBowie.addParticipante(PeterCapusotto);
+		DavidBowie.addParticipante(AlexGaniggia);
+		DavidBowie.addParticipante(SandraMihanovich);
+		DavidBowie.addParticipante(Trapero);
+		DavidBowie.addParticipante(Londra);
+		/*INDIO SOLARI*/
+		IndioSolari.addParticipante(GuidoSuller);
+		IndioSolari.addParticipante(SoledadSilveyra);
+		
+		/*IMPRIMIR*/
+		/*EQUIPO DE FREDDIE*/
+		System.out.println(FreddieMercury);
+		/*EQUIPO DE DAVID*/
+		System.out.println(DavidBowie);
+		/*EQUIPO DE INDIO*/
+		System.out.println(IndioSolari);
+		
+		
+		
+		Banda LosLocos = new Banda("LosLocos", 5);
+		LosLocos.addMiembros(SandraMihanovich);
+		LosLocos.addMiembros(AlexGaniggia);
+		LosLocos.addMiembros(LGante);
+		LosLocos.addMiembros(Londra);
+		LosLocos.addMiembros(Trapero);
+		
+		
+	
+		
+		Cancion temaTrap = new Cancion("TrapSong", "Español",0);
+		temaTrap.addGenero("Trap");
+		temaTrap.addGenero("HipHop");
+		temaTrap.addGenero("Trap");	
+		temaTrap.addGenero("HipHop");
+		Cancion temaRock = new Cancion("RockSong", "Ingles",0);
+		temaRock.addGenero("Rock");
+		temaRock.addInstrumento("Guitarra");
+		temaRock.addInstrumento("Pandereta");
+		temaRock.addInstrumento("Bajo");
+		Cancion temaRock2 = new Cancion("RockSong2", "Ingles",0);
+		temaRock2.addGenero("Rock");
+		temaRock2.addInstrumento("Guitarra");
+		temaRock2.addInstrumento("Pandereta");
+		temaRock2.addInstrumento("Bajo");
+		
+		DavidBowie.addParticipante(LosLocos);
+	
+		DesafioCantInstrumentos instrumetales = new DesafioCantInstrumentos();
+		
+		Produccion p1 = new Produccion(5, instrumetales, FreddieMercury, DavidBowie);
+		
+	
+		p1.addTema(temaTrap);
+		p1.addTema(temaRock);
+		p1.addTema(temaRock2);
+		
+		p1.iniciar();
+		
+		
+		
+		/*Coach c1 = new Coach("maxi", "otharan");
+		
+		CoachExigente c2 = new CoachExigente("leonel", "otharan");*/
+		
+		
+		/*Participante p1 = new Participante("dawd", "adawdwa", 30);
+		Participante p2 = new Participante("awdawdawd", "aafawfawf", 25);
+		
+		p1.addInstrumento("flauta");
+		p2.addInstrumento("flauta");
+		
+		p1.addIdioma("español");
+		p2.addIdioma("ingles");
+		
+		p1.addGenero("armonico");
+		p2.addGenero("pop");
+		
+		
+		
+		Participante p3 = new Participante("awdawdaawdadawdwd", "aafaawdadadwfawf", 35);
+		
+		p3.addInstrumento("flauta");
+		p3.addIdioma("español");
+		p3.addGenero("armonico");
+		
+		c2.addParticipante(p1);
+		c2.addParticipante(p3);
+		
+		
+		System.out.println(c2);*/
+	}
+
+}

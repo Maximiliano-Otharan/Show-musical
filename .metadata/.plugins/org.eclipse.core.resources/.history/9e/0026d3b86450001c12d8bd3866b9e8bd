@@ -1,0 +1,20 @@
+package Proyecto;
+
+public class CancionFinal extends Cancion {
+
+	private int cantInstrumentosRestrictivos;
+	
+	public CancionFinal(String titulo, String idioma, int cantInstrumentosRestrictivos) {
+		super(titulo, idioma);
+		this.cantInstrumentosRestrictivos = cantInstrumentosRestrictivos;
+	}
+
+	public int getCantInstrumentosRestrictivos() {
+		return cantInstrumentosRestrictivos;
+	}
+
+	public void setCantInstrumentosRestrictivos(int cantInstrumentosRestrictivos) {
+		this.cantInstrumentosRestrictivos = cantInstrumentosRestrictivos;
+	}
+	
+}

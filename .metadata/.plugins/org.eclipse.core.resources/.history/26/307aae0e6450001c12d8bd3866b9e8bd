@@ -1,0 +1,163 @@
+package Proyecto;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+import filtros.Filtro;
+
+public class CoachExigente extends Coach {
+	
+	private ArrayList<ElementoParticipanteAbs> participantes;
+	private Filtro filtro;
+
+	public CoachExigente(String nombre, String apellido, Filtro filtro) {
+		super(nombre, apellido);
+		this.participantes = new ArrayList<>();
+		this.filtro = filtro;
+	}
+	
+	public Filtro getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(Filtro filtro) {
+		this.filtro = filtro;
+	}
+
+	public void addParticipante(ElementoParticipanteAbs participante) {
+		if(filtro.cumple(participante)) {
+			if(!this.getListaDeParticipantes().contains(participante)) {
+				this.participantes.add(participante);
+			}
+		}
+	}
+	
+	/*Listados*/
+	@Override
+	public ArrayList<ElementoParticipanteAbs> getListaDeParticipantes(){
+		ArrayList<ElementoParticipanteAbs> participantes = new ArrayList<>();
+		participantes.addAll(this.participantes);
+		return participantes;
+	}
+	
+	/*Metodos*/
+	@Override
+	public Double getPromedioEdad() {
+		Double acumulador = 0.00;
+		int cantParticipantes = this.participantes.size();
+		for (ElementoParticipanteAbs participante : participantes) {
+			acumulador+= participante.getEdad();
+		}
+		return acumulador/cantParticipantes;
+	}
+	
+	/*Buscar/Criterio*/
+	@Override
+	public ArrayList<String> getListaDeInstrumentos(){
+		ArrayList<ElementoParticipanteAbs> participantes = this.getListaDeParticipantes();
+		ArrayList<String> instrumentos = new ArrayList<>();
+		ArrayList<String> aux = new ArrayList<>();
+		
+		for (ElementoParticipanteAbs participante : participantes) {
+			instrumentos.addAll(participante.getListaDeInstrumentos());
+			for (String instrumento : instrumentos) {
+				if(!aux.contains(instrumento)) {
+					aux.add(instrumento);
+				}
+			}
+		}
+		return aux;
+	}
+	
+	@Override
+	public ArrayList<String> getListaDeIdiomas(){
+		ArrayList<ElementoParticipanteAbs> participantes = this.getListaDeParticipantes();
+		ArrayList<String> idiomas = new ArrayList<>();
+		ArrayList<String> aux = new ArrayList<>();
+		
+		for (ElementoParticipanteAbs participante : participantes) {
+			idiomas.addAll(participante.getListaDeIdiomas());
+			for (String idioma : idiomas) {
+				if(!aux.contains(idioma)) {
+					aux.add(idioma);
+				}
+			}
+		}
+		return aux;
+	}
+
+	@Override
+	public ArrayList<String> getListaOrdenadaDeGeneros(){
+		ArrayList<ElementoParticipanteAbs> participantes = this.getListaDeParticipantes();
+		ArrayList<String> generos = new ArrayList<>();
+		ArrayList<String> aux = new ArrayList<>();
+		
+		for (ElementoParticipanteAbs participante : participantes) {
+			generos.addAll(participante.getListaDeGeneros());
+			for (String genero : generos) {
+				if(!aux.contains(genero)) {
+					aux.add(genero);
+				}
+			}
+		}
+		Collections.sort(aux);
+		return aux;
+	}
+	
+	/*Busqueda filtrada*/
+	@Override
+	public ArrayList<ElementoParticipanteAbs> getListaDeParticipantesConFiltro(Filtro f){
+		ArrayList<ElementoParticipanteAbs> participantes = this.getListaDeParticipantes();
+		for (ElementoParticipanteAbs participante : participantes) {
+			participantes.addAll(participante.getListaDeParticipantesConFiltro(f));
+		}
+		return participantes;
+	}
+	
+	@Override
+	public ElementoParticipanteAbs getParticipantesBatalla(Cancion tema, Desafio desafio) {
+		ArrayList<ElementoParticipanteAbs> aux = new ArrayList<>();
+		for (ElementoParticipanteAbs participante : participantes) {
+			if(participante.esInterpretable(tema)) {
+				aux.add(participante);
+			}
+		}
+		Collections.sort(aux, desafio);
+		if(aux.size() > 0) {
+			return aux.get(0);
+		}else {
+			return null;
+		}
+	}
+	
+	@Override
+	public ElementoParticipanteAbs getParticipantesBatallaFinal(CancionFinal tema, Desafio desafio) {
+        ArrayList<ElementoParticipanteAbs> aux = new ArrayList<>();
+        for (ElementoParticipanteAbs participante : participantes) {
+            if(participante.esInterpretable(tema) && participante.puedeInterpretarTemaFinal(tema)) {
+                aux.add(participante);
+            }
+        }
+        Collections.sort(aux, desafio);
+        if(aux.size() > 0) {
+            return aux.get(0);
+        }else {
+            return null;
+        }
+    }
+	
+	@Override
+	public String toString() {
+		return "<----------------------------------------------------------------->\n"+
+				"<-----EL EQUIPO DE " + this.getNombre().toUpperCase() + " " + this.getApellido().toUpperCase() + 
+				":----->\n Idiomas de equipo: " + this.getListaDeIdiomas() +
+				".\n Instrumentos de equipo: " + this.getListaDeInstrumentos() + 
+				".\n Generos de equipo: " + this.getListaOrdenadaDeGeneros() + 
+				".\n El promedio de edad del equipo es de: " + this.getPromedioEdad() + " años." + 
+				"\n <<<PARTICIPANTES>>>: " + this.getListaDeParticipantes() + 
+				"\n<----------------------------------------------------------------->" ;
+	}
+	
+	
+
+}
